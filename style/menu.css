@@ -1,0 +1,56 @@
+.header{
+	font-family: monospace;
+}
+
+ul {
+	list-style: none;
+	padding: 3px;
+	margin: 5px;
+	background: #92A77B;
+}
+ul li {
+	display: block;
+	position: relative;
+	float: left;
+	font-family: monospace;
+	font-weight: bolder;
+	padding: 3px;
+	background: #F0DE99;
+}
+li ul {display: none;}
+
+ul li a {
+	display: block;
+	padding: lem;
+	text-decoration: none;
+	white-space: nowrap;
+	color: black;
+}
+
+ul li a:hover {background:#794540}
+
+li:hover > ul {
+	display: block;
+	position: absolute;
+}
+
+li:hover li {float: none;}
+
+li:hover a {background: #3C2B27;}
+
+li:hover li a:hover {background: plum;}
+
+.main-navigation li ul li {border-top: 0;}
+
+ul ul ul {
+	left: 90%;
+	top: 0;
+}
+
+ul::before,
+ul:after {
+	content: " ";
+	display: table;
+}
+
+ul::after {clear: both;}
