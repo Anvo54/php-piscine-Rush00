@@ -33,7 +33,7 @@
 	if (!file_exists("data/products"))
 	{
 		include 'navigation.php';
-		echo "Product catalog is empty please <a href=".'create_product.html'.">add some products</a>";
+		echo "Product catalog is empty please <a href=".'create_prod.php'.">add some products</a>";
 		exit;
 	}
 ?>
