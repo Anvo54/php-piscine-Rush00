@@ -1,12 +1,11 @@
 .header{
 	font-family: monospace;
 }
-
 ul {
 	list-style: none;
-	padding: 3px;
+	padding: 15px;
 	margin: 5px;
-	background: #92A77B;
+	background: rgb(255, 129, 129);
 }
 ul li {
 	display: block;
@@ -14,8 +13,8 @@ ul li {
 	float: left;
 	font-family: monospace;
 	font-weight: bolder;
-	padding: 3px;
-	background: #F0DE99;
+	padding: 10px;
+	background: rgb(255, 129, 129);
 }
 li ul {display: none;}
 
@@ -27,7 +26,7 @@ ul li a {
 	color: black;
 }
 
-ul li a:hover {background:#794540}
+ul li a:hover {background:rgb(255, 129, 129);}
 
 li:hover > ul {
 	display: block;
@@ -36,7 +35,7 @@ li:hover > ul {
 
 li:hover li {float: none;}
 
-li:hover a {background: #3C2B27;}
+li:hover a {background: rgb(255, 129, 129);}
 
 li:hover li a:hover {background: plum;}
 
