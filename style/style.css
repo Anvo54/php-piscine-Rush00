@@ -17,6 +17,24 @@ html {
 	text-align: center;
 }
 
+.single_product > img{
+	width: 220px;
+	transition: transform .2s;
+}
+
+.single_product > img:hover{
+	transform: scale(3);
+}
+
+.product_box > img {
+	width: 220px;
+	transition: transform .2s;
+}
+
+.product_box > img:hover {
+	transform: scale(1.5);
+}
+
 .main_container{
 	padding-left: 15%;
 	padding-right: 15%;
@@ -34,7 +52,7 @@ h1{
 	text-align: center;
 }
 
-.button_green {
+button {
 	background-color: #4CAF50; /* Green */
 	border: none;
 	color: white;

@@ -46,8 +46,8 @@ if ($uploadOk == 0) {
 }
 
 $name = $_POST["product_name"];
-$price = $_POST["product_price"];
-$stock = $_POST["product_stock"];
+$price = doubleval($_POST["product_price"]);
+$stock = intval($_POST["product_stock"]);
 $product_image = mysqli_real_escape_string($conn, "data/img/".basename($_FILES["product_image"]["name"]));
 $desc = mysqli_real_escape_string($conn, $_POST["product_description"]);
 $categories = implode(',', $_POST["category_name"]);
