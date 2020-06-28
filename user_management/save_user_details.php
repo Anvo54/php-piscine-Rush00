@@ -25,7 +25,11 @@ if(mysqli_num_rows($result) > 0) {
 	exit();
 }
 
-$sql = "INSERT INTO USERDETAILS (user, firstname, lastname, address, zipcode, city, country) VALUES ('$user', '$firstname', '$lastname', '$address', '$zipcode', '$city', '$country')";
-mysqli_query($conn, $sql);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "INSERT INTO USERDETAILS (user, firstname, lastname, address, zipcode, city, country) VALUES ((?), (?), (?), (?), (?), (?), (?))")) {
+	mysqli_stmt_bind_param($stmt, "sssssss", $user, $firstname, $lastname, $address, $zipcode, $city, $country);
+	mysqli_stmt_execute($stmt);
+}
+mysqli_stmt_close($stmt);
 header('Location:../user_info.php');
 ?>
