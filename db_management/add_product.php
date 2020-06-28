@@ -5,7 +5,7 @@ require('connect.php');
 $name = $_POST["product_name"];
 $price = $_POST["product_price"];
 $stock = $_POST["product_stock"];
-$product_image = $_POST["product_image"];
+$product_image = mysqli_real_escape_string($conn, $_POST["product_image"]);
 $desc = mysqli_real_escape_string($conn, $_POST["product_description"]);
 $categories = implode(',', $_POST["category_name"]);
 

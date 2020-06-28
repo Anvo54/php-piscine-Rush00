@@ -36,8 +36,8 @@ $products = "CREATE TABLE PRODUCTS (
 	categories VARCHAR(500),
 	price DECIMAL(7,2) NOT NULL,
 	stock INT(4) NOT NULL,
-	imgpath VARCHAR(30) NOT NULL,
-	description VARCHAR(30) NOT NULL
+	imgpath VARCHAR(300) NOT NULL,
+	description TEXT(2000) NOT NULL
 	)";
 
 $orders = "CREATE TABLE ORDERS (

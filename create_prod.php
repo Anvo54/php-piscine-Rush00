@@ -65,8 +65,10 @@ if ($_SESSION["login_user"] != 'admin')
 			$result = mysqli_query($conn, $sql);
 			while ($row = $result->fetch_assoc()) {
 				echo '<tr>';
+				echo '<td>'.$row['id'].'</td>';
 				echo '<td><a href="modify_product.php?product='.$row['name'].'">'.$row['name'].'</a></td>';
-				echo '<td><input type="checkbox" name="product[]" value="'.$row['name'].'"></td>';
+				echo '<td>'.$row['categories'].'</td>';
+				echo '<td><input type="checkbox" name="id[]" value="'.$row['id'].'"></td>';
 				echo '</tr>';
 			}
 			mysqli_close($conn);
