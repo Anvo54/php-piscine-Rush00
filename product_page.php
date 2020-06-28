@@ -11,7 +11,7 @@
 			echo "<img src=".$row["imgpath"].">";
 			echo "<p>".$row['description']."</p>";
 			echo "<p>$".$row["price"]." / ".$row['stock']." in stock</p>";
-			echo "<button>Add to cart</button>";
+			echo "<form action='cart_management/add_to_cart.php' method='get'><input type='hidden' name='product' value='".$row["name"]."'><button type='submit' name='submit' value='add_to_cart'>Add to cart</button></form>";
 			echo "<hr>";
 		}
 	}
@@ -29,7 +29,7 @@
 			echo "<img src=".$row["imgpath"].">";
 			echo "<p>".$row["description"]."</p>";
 			echo "<p>$".$row["price"]." / ".$row['stock']." in stock</p>";
-			echo "<button>Add to cart</button>";
+			echo "<form action='cart_management/add_to_cart.php' method='get'><input type='hidden' name='product' value='".$row["name"]."'><button type='submit' name='submit' value='add_to_cart'>Add to cart</button></form>";
 		}
 	}
 	$title = ($_GET["product_name"]) ? $_GET["product_name"] : "Products";
