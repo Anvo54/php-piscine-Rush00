@@ -34,11 +34,13 @@ session_start();
 			<?php
 				$items = explode(',',$row['cart']);
 				foreach($items as $item) {
+					$total = 0;
 					$parts = explode(':', $item);
 					$id = $parts[0];
 					$quantity = $parts[1];
 					$product = get_products($id);
 					$subtotal = $quantity * $product['price'];
+					$total += $subtotal;
 					echo '<tr>';
 					echo '<td>'.$product['name'].'</td>';
 					echo '<td>'.$quantity.'</td>';
@@ -48,6 +50,21 @@ session_start();
 				}
 				?>
 				</table>
+					<br>
+			<table class="total">
+			<tr class="total">
+				<th class="total"></th>
+				<th class="total"></th>
+				<th class="total"></th>
+				<th style='width: 20%'>Total</th>
+			</tr>
+			<tr class="total">
+				<td class="total"></td>
+				<td class="total"></td>
+				<td class="total"></td>
+				<td style='width: 20%'><?php echo '<b>$'.$total.'</>'; ?></td>
+			</tr>
+			</table>
 				<br>
 				<?php
 				echo 'Address:<br>';
