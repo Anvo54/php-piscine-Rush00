@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function combine($item, $key) {
 	$item = $key.':'.$item;
 }

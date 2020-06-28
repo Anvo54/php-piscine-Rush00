@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET['id'],$_SESSION['cart'])) {
+	unset($_SESSION['cart'][$_GET['id']]);
+}
 ?>
 <link rel="stylesheet" type="text/css" href="style/cart.css">
 <link rel="stylesheet" type="text/css" href="style/style.css">
@@ -17,10 +20,11 @@ session_start();
 		?>
 		<table class="cart">
 		<tr>
-			<th style='width: 40%'>Items</th>
-			<th style='width: 20%'>Quantity</th>
+			<th style='width: 30%'>Items</th>
+			<th style='width: 15%'>Quantity</th>
 			<th style='width: 20%'>Unit Price</th>
 			<th style='width: 20%'>Subtotal</th>
+			<th style='width: 15%'>Remove</th>
 		</tr>
 		<?php
 		$total = 0;
@@ -38,6 +42,7 @@ session_start();
 			echo '<td>'.$quantity.'</td>';
 			echo '<td>$'.$row['price'] .'</td>';
 			echo '<td>$'.$subtotal.'</td>';
+			echo '<td><a href="cart.php?action=rm&id='.$id.'">X</a></td>';
 			echo '</tr>';
 		}
 		?>

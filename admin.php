@@ -13,7 +13,7 @@ if ($_SESSION["login_user"] != 'admin')
 			<li><a href="create_prod.php">Manage products</a></li>
 			<li><a href="manage_categories.php">Manage categories</a></li>
 			<li><a href="remove_users.php">Manage users</a></li>
-			<li><a href="#">Manage orders</a></li>
+			<li><a href="#">View all orders</a></li>
 		</ul>
 	</body>
 </html>

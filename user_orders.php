@@ -19,32 +19,41 @@ session_start();
 			include 'get_products.php';
 			while($row = $result->fetch_assoc()) {
 				echo '<h3>Order '.$row['reg_date'].'</h3>';
+				?>
+			<table class="cart">
+			<tr>
+				<th style='width: 40%'>Items</th>
+				<th style='width: 20%'>Quantity</th>
+				<th style='width: 20%'>Unit Price</th>
+				<th style='width: 20%'>Subtotal</th>
+			</tr>
+			<?php
 				$items = explode(',',$row['cart']);
 				foreach($items as $item) {
 					$parts = explode(':', $item);
 					$id = $parts[0];
 					$quantity = $parts[1];
 					$product = get_products($id);
-					?>
-					<?php
-					$total = 0;
-					$subtotal = $quantity * $row['price'];
-					$total += $subtotal;
+					$subtotal = $quantity * $product['price'];
 					echo '<tr>';
-					echo '<td>'.$row['name'].'</td>';
+					echo '<td>'.$product['name'].'</td>';
 					echo '<td>'.$quantity.'</td>';
-					echo '<td>$'.$row['price'] .'</td>';
+					echo '<td>$'.$product['price'] .'</td>';
 					echo '<td>$'.$subtotal.'</td>';
 					echo '</tr>';
-		}
-		?>
-		</table>
 				}
+				?>
+				</table>
+				<br>
+				<?php
+				echo 'Address:<br>';
 				echo $row['firstname'].' '.$row['lastname'].'<br>';
 				echo $row['address'].'<br>';
 				echo $row['zipcode'].'<br>';
 				echo $row['city'].'<br>';
-				echo $row['country'].'<br>';
+				echo $row['country'].'<br><br>';
+				echo 'Shipping: '.$row['shipping'].'<br>';
+				echo 'Payment: '.$row['payment'].'<br>';
 			}
 		}
 	?>

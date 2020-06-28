@@ -46,18 +46,18 @@ if ($user = $_SESSION['login_user'] != '') {
 				</tr>
 		</table>
 		<h3>Choose shipping</h3>
-		<input type="radio" id="Express mail" name="shipping" value="express">
+		<input type="radio" id="Express mail" name="shipping" value="Express">
 		<label for="express">Express (4-7 working days) - $24.99</label><br>
-		<input type="radio" id="priority" name="shipping" value="priority">
+		<input type="radio" id="priority" name="shipping" value="Priority">
 		<label for="priority">Priority (8-14 days) - $9.99</label><br>
-		<input type="radio" id="standard" name="shipping" value="standard">
+		<input type="radio" id="standard" name="shipping" value="Standard">
 		<label for="standard">Standard (15-21 days) - FREE</label><br><br>
 		<h3>Choose payment method</h3>
-		<input type="radio" id="creditcard" name="payment" value="creditcard">
+		<input type="radio" id="creditcard" name="payment" value="Credit Card">
 		<label for="creditcard">Credit card</label><br>
-		<input type="radio" id="bank" name="payment" value="bank">
+		<input type="radio" id="bank" name="payment" value="Bank">
 		<label for="priority">Bank transfer</label><br>
-		<input type="radio" id="bitcoin" name="payment" value="bitcoin">
+		<input type="radio" id="bitcoin" name="payment" value="Bitcoin">
 		<label for="bitcoin">Bitcoin</label><br><br>
 		<input type="submit" name="submit" value="Order" />
 	</form>
