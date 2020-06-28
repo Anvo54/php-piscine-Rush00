@@ -7,6 +7,7 @@ session_start();
 <html>
 	<body class="main_container">
 		<?php include 'navigation.php'?>
+		<div class="user">
 		<h2>Your Orders</h2>
 	<?php
 		require('db_management/connect.php');
@@ -60,5 +61,6 @@ session_start();
 			}
 		}
 	?>
+	</div>
 	</body>
 </html>

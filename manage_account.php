@@ -6,6 +6,7 @@ session_start();
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<body class="main_container">
 		<?php include 'navigation.php'?>
+		<div class="user">
 		<form action="db_management/modif_user.php" name="change_pw" method="POST">
 			<h2>Change password</h2>
 			<table>
@@ -35,5 +36,6 @@ session_start();
 			<input type="submit" name="submit" value="Yes" />
 			<input type="submit" name="submit" value="Cancel" />
 		</form>
+		</div>
 	</body>
 </html>

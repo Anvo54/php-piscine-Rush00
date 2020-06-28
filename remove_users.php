@@ -8,6 +8,7 @@ if ($_SESSION["login_user"] != 'admin')
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <body class="main_container">
 <?php include 'navigation.php' ?>
+<div class="admin">
 <form action="db_management/delete_users.php" method="post">
 	<h2>Delete users</h2>
 		<table>
@@ -31,5 +32,6 @@ if ($_SESSION["login_user"] != 'admin')
 				echo '<input type="submit" name="submit" value="DELETE" />';
 			?>
 </form>
+</div>
 </body>
 </html>

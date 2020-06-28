@@ -49,5 +49,9 @@ ul:after {
 	content: " ";
 	display: table;
 }
+.header {
+	color: black;
+	font-size: 2em;
+}
 
 ul::after {clear: both;}

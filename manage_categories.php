@@ -4,10 +4,11 @@ if ($_SESSION["login_user"] != 'admin')
 	die('FORBIDDEN AREA');
 ?>
 <html>
-	<body>
+	<body class="main_container">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 		<?php include 'navigation.php'?>
+		<div class="admin">
 		<h2>Create Category</h2>
 		<form action="db_management/add_category.php" method="POST">
 			<table>
@@ -51,5 +52,6 @@ if ($_SESSION["login_user"] != 'admin')
 				echo '<input type="submit" name="submit" value="Delete" />';
 			?>
 </form>
+</div>
 	</body>
 </html>

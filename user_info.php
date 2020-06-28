@@ -12,6 +12,7 @@ mysqli_close($conn);
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<body class="main_container">
 	<?php include 'navigation.php' ?>
+	<div class="user">
 	<h2>User details</h2>
 	<form action="user_management/save_user_details.php" method="POST">
 		<table>
@@ -43,5 +44,6 @@ mysqli_close($conn);
 		<br>
 		<input type="submit" name="submit" value="Save" />
 	</form>
+	</div>
 	</body>
 </html>

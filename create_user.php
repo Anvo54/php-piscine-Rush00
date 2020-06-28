@@ -4,8 +4,9 @@ session_start();
 <html>
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style/style.css">
-	<body>
+	<body class="main_container">
 		<?php include 'navigation.php' ?>
+		<div class="admin">
 		<form action="db_management/add_user.php" name="create_user" method="POST">
 			<h2>Create account</h2>
 			<table>
@@ -26,5 +27,6 @@ session_start();
 			}
 			?>
 		</form>
+		</div>
 	</body>
 </html>

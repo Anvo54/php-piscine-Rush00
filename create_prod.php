@@ -6,9 +6,10 @@ if ($_SESSION["login_user"] != 'admin')
 <html>
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style/style.css">
-	<body>
+	<body class="main_container">
 		<title>Create product</title>
 		<?php include 'navigation.php'?>
+		<div class="admin">
 		<h2>Add product</h2>
 		<h3>Product details</h3>
 		<form action="db_management/add_product.php" name="create_product" method="POST" enctype="multipart/form-data">
@@ -82,5 +83,6 @@ if ($_SESSION["login_user"] != 'admin')
 				echo '<input type="submit" name="submit" value="Delete" />';
 			?>
 </form>
+</div>
 	</body>
 </html>

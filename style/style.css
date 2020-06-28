@@ -78,4 +78,19 @@ button {
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-  }
+}
+
+.admin {
+	padding: 5vmin;
+	background-color: white;
+	border-radius: 2vmin;
+	border-style: outset;
+	border-color: black;
+}
+.user {
+	padding: 5vmin;
+	background-color: white;
+	border-radius: 2vmin;
+	border-style: outset;
+	border-color: black;
+}
