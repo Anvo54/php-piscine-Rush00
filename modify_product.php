@@ -9,10 +9,11 @@ if (!$result = mysqli_query($conn, $sql))
 $usr = mysqli_fetch_assoc($result);
 ?>
 <html>
-	<body>
+	<body class="main_container">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 		<?php include 'navigation.php'?>
+		<div class="admin">
 		<h2>Modify product</h2>
 		<form action="db_management/modif_product.php?" method="POST">
 			<table>
@@ -61,5 +62,6 @@ $usr = mysqli_fetch_assoc($result);
 			}
 			?>
 		</form>
+		</div>
 	</body>
 </html>
