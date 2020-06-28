@@ -24,16 +24,21 @@ session_start();
 		</tr>
 		<?php
 		$total = 0;
-		foreach($_SESSION['cart'] as $product => $quantity) {
+		echo print_r($_SESSION);
+		foreach($_SESSION['cart'] as $id => $quantity) {
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM PRODUCTS WHERE name='$product'";
-			$result = mysqli_query($conn, $sql);
+			$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
+			if ($result = mysqli_query($conn, $sql)) {
+				echo nl2br("New order created successfully\n");
+			} else {
+				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			}
 			$row = $result->fetch_assoc();
 			mysqli_close($conn);
 			$subtotal = $quantity * $row['price'];
 			$total += $subtotal;
 			echo '<tr>';
-			echo '<td>'.$product.'</td>';
+			echo '<td>'.$row['product'].'</td>';
 			echo '<td>'.$quantity.'</td>';
 			echo '<td>$'.$row['price'] .'</td>';
 			echo '<td>$'.$subtotal.'</td>';
