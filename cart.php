@@ -32,11 +32,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET[
 		$total = 0;
 		foreach($_SESSION['cart'] as $id => $quantity) {
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
+			$id = mysqli_real_escape_string($conn, $id);
+			$sql = "SELECT * FROM PRODUCTS WHERE id='$id'";
 			if (!$result = mysqli_query($conn, $sql))
 				die("Error: " . $sql . "<br>" . mysqli_error($conn));
 			$row = mysqli_fetch_assoc($result);
-			mysqli_close($conn);
 			$subtotal = $quantity * $row['price'];
 			$total += $subtotal;
 			echo '<tr>';

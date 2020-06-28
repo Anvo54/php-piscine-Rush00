@@ -23,9 +23,10 @@ if (session_status() == PHP_SESSION_NONE) {
 	function view_product()
 	{
 		require('db_management/connect.php');
-		$id = $_GET["id"];
+		$id = real_escape_string($conn, $_GET["id"]);
 		$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
-		$result = mysqli_query($conn, $sql);
+		if (!$result = mysqli_query($conn, $sql))
+			die("Error: " . $sql . "<br>" . mysqli_error($conn));
 		if(mysqli_num_rows($result) === 0)
 			echo "Product not found!";
 		else {

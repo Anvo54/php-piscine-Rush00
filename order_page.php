@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (($user = $_SESSION['login_user']) != '') {
+if (($_SESSION['login_user']) != '') {
 	require('db_management/connect.php');
-	$user = mysqli_real_escape_string($conn, $user);
+	$user = mysqli_real_escape_string($conn, $_SESSION['login_user']);
 	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
-	if($result = mysqli_query($conn, $sql))
+	if(!$result = mysqli_query($conn, $sql))
 		die("Error: " . $sql . "<br>" . mysqli_error($conn));
 	$usr = mysqli_fetch_assoc($result);
 	mysqli_close($conn);
