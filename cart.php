@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET['id'],$_SESSION['cart'])) {
 	unset($_SESSION['cart'][$_GET['id']]);
 }
