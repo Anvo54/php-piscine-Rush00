@@ -11,13 +11,16 @@ session_start();
 	<?php
 		require('db_management/connect.php');
 		$user = $_SESSION["login_user"];
-		$sql = "SELECT * FROM ORDERS WHERE user='$user'";
+		if ($user == 'admin' && isset($_GET['admin']))
+			$sql = "SELECT * FROM ORDERS";
+		else
+			$sql = "SELECT * FROM ORDERS WHERE user='$user'";
 		$result = mysqli_query($conn, $sql);
 		if(mysqli_num_rows($result) === 0)
 			echo "No orders found!";
 		else {
 			include 'get_products.php';
-			while($row = $result->fetch_assoc()) {
+			while($row = mysqli_fetch_assoc($result)) {
 				echo '<h3>Order '.$row['reg_date'].'</h3>';
 				?>
 			<table class="cart">

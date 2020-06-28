@@ -4,7 +4,7 @@ require('db_management/connect.php');
 $user = $_SESSION['login_user'];
 $sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
 $result = mysqli_query($conn, $sql);
-$usr = $result->fetch_assoc();
+$usr = mysqli_fetch_assoc($result);
 mysqli_close($conn);
 ?>
 <html>
