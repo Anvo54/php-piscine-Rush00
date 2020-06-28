@@ -4,7 +4,6 @@ if ($_POST['submit'] == 'Delete') {
 	foreach ($_POST['id'] as $id) {
 		$sql = "DELETE FROM PRODUCTS WHERE id=$id";
 		mysqli_query($conn, $sql);
-		header("Location:../create_prod.php");
-		die();
 	}
+	header("Location:../create_prod.php");
 }

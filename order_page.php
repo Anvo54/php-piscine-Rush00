@@ -4,7 +4,7 @@ if ($user = $_SESSION['login_user'] != '') {
 	require('db_management/connect.php');
 	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
 	$result = mysqli_query($conn, $sql);
-	$usr = $result->fetch_assoc();
+	$usr = mysqli_fetch_assoc($result);
 	mysqli_close($conn);
 } else {
 	$_SESSION['error'] = 'Log in before making an order';

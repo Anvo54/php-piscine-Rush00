@@ -4,11 +4,12 @@
 	{
 		$category = $_GET['cat'];
 		require('db_management/connect.php');
-		$sql = "SELECT * FROM PRODUCTS WHERE categories LIKE '%$category%'";
-		$result = mysqli_query($conn, $sql);
+		$sql = "SELECT * FROM PRODUCTS WHERE categories LIKE '%".$category."%'";
+		if (!$result = mysqli_query($conn, $sql))
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 		echo "<h1>$category products</h1>";
 		echo '<div class="product_content">';
-		while ($row = $result->fetch_assoc()) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			echo "<div class='product_box'>";
 			echo "<a href="."?product_name=".str_replace(' ', '%20', $row["name"])."><h1>".$row["name"]."</h1></a>";
 			echo "<img src=".$row["imgpath"].">";

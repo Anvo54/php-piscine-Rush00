@@ -15,7 +15,7 @@ if ($_SESSION["login_user"] != 'admin')
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM USERS";
 			$result = mysqli_query($conn, $sql);
-			while ($row = $result->fetch_assoc()) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				if ($row['user'] == 'admin')
 					continue;
 				echo '<tr>';

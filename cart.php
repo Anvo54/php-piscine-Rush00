@@ -33,7 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET[
 			$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
 			if (!$result = mysqli_query($conn, $sql))
 				die("Error: " . $sql . "<br>" . mysqli_error($conn));
-			$row = $result->fetch_assoc();
+			$row = mysqli_fetch_assoc($result);
 			mysqli_close($conn);
 			$subtotal = $quantity * $row['price'];
 			$total += $subtotal;

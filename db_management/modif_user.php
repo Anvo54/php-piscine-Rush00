@@ -13,7 +13,7 @@ $newpw = $_POST['newpw'];
 
 $sql = "SELECT * FROM USERS WHERE user='$user'";
 $result = mysqli_query($conn, $sql);
-$row = $result->fetch_assoc();
+$row = mysqli_fetch_assoc($result);
 if (!password_verify($oldpw, $row['password'])) {
 	$_SESSION['error'] = "incorrect password!";
 	header('Location:../manage_account.php');

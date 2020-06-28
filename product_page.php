@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		$result = mysqli_query($conn, $sql);
 		echo "<h1>All products</h1>";
 		echo '<div class="product_content">';
-		while ($row = $result->fetch_assoc()) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			echo "<div class='product_box'>";
 			echo "<a href=?id=".$row['id']."&product_name=".str_replace(' ', '%20', $row["name"])."><h1>".$row["name"]."</h1></a>";
 			echo "<img src=".$row["imgpath"].">";
@@ -29,7 +29,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		if(mysqli_num_rows($result) === 0)
 			echo "Product not found!";
 		else {
-			$row = $result->fetch_assoc();
+			$row = mysqli_fetch_assoc($result);
 			echo "<div class='single_product'>";
 			echo "<h1>".$row["name"]."</h1>";
 			echo "<img src=".$row["imgpath"].">";

@@ -40,7 +40,7 @@ if ($_SESSION["login_user"] != 'admin')
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM CATEGORIES";
 			$result = mysqli_query($conn, $sql);
-			while ($row = $result->fetch_assoc()) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				echo '<tr>';
 				echo '<td>'.$row['name'].'</td>';
 				echo '<td><input type="checkbox" name="category_name[]" value="'.$row['name'].'"></td>';
@@ -65,7 +65,7 @@ if ($_SESSION["login_user"] != 'admin')
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM PRODUCTS";
 			$result = mysqli_query($conn, $sql);
-			while ($row = $result->fetch_assoc()) {
+			while ($row = mysqli_fetch_assoc($result)) {
 				echo '<tr>';
 				echo '<td>'.$row['id'].'</td>';
 				echo '<td><a href="modify_product.php?product='.$row['name'].'">'.$row['name'].'</a></td>';

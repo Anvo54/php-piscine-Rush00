@@ -9,7 +9,7 @@ function auth($login, $passwd)
 		$_SESSION['error'] = "user does not exist!";
 		return (FALSE);
 	}
-	$row = $result->fetch_assoc();
+	$row = mysqli_fetch_assoc($result);
 	if (!password_verify($passwd , $row['password'])) {
 		$_SESSION['error'] = "incorrect password!";
 		return (FALSE);

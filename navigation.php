@@ -18,7 +18,7 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM CATEGORIES";
 			$result = mysqli_query($conn, $sql);
-			while ($cats = $result->fetch_assoc()) {
+			while ($cats = mysqli_fetch_assoc($result)) {
 				echo "<li><a href=category_page.php?cat=".$cats['name'].">".$cats['name']."</a></li>";
 			}
 			?>
@@ -40,16 +40,17 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 			</ul>
 		<li><a href="cart.php"><i class="material-icons md-24">shopping_cart</i>My cart</a></li>
 		<?php
-		if ($_SESSION["login_user"] == 'admin')
+		if ($_SESSION["login_user"] == 'admin') {
 			echo '<li><a href="#"><i class="material-icons md-24">admin_panel_settings</i>Admin</a>';
 		?>
 			<ul>
 				<li><a href="create_prod.php">Manage products</a></li>
 				<li><a href="manage_categories.php">Manage categories</a></li>
 				<li><a href="remove_users.php">Manage users</a></li>
-				<li><a href="#">View all orders</a></li>
+				<li><a href="user_orders.php?admin=true">View all orders</a></li>
 			</ul>
 			</li>
 		</li>
+		<?php }?>
 	</ul>
 </nav>
