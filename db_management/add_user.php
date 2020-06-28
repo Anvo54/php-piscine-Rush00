@@ -3,7 +3,6 @@ session_start();
 require('connect.php');
 $user = $_POST['login'];
 $passwd = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
-
 $sql = "SELECT name FROM USERS WHERE user='$user'";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0) {
@@ -11,13 +10,12 @@ if(mysqli_num_rows($result) > 0) {
 	header("Location:../create_user.php");
 	die;
 }
-
-$stmt = mysqli_stmt_init($conn);
-if (mysqli_stmt_prepare($stmt, "INSERT INTO USERS (user, password) VALUES ((?), (?))")) {
-	mysqli_stmt_bind_param($stmt, "ss", $user, $passwd);
-	mysqli_stmt_execute($stmt);
+$sql = "INSERT INTO USERS (user, password) VALUES ('$user', '$passwd')";
+if (mysqli_query($conn, $sql)) {
+	echo nl2br("New record created successfully\n");
+} else {
+	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-mysqli_stmt_close($stmt);
-
+mysqli_close($conn);
 $_SESSION['msg'] = "User created successfully!";
 header("Location:../login.php");
