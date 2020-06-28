@@ -19,6 +19,7 @@ if (($_SESSION['login_user']) != '') {
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<?php include 'cart.php'?>
+	<div class="user">
 	<h2>Delivery Address</h2>
 	<form action="cart_management/create_order.php" name="login.php" method="POST">
 		<table>
@@ -63,5 +64,6 @@ if (($_SESSION['login_user']) != '') {
 		<label for="bitcoin">Bitcoin</label><br><br>
 		<input type="submit" name="submit" value="Order" />
 	</form>
+	</div>
 	</body>
 </html>

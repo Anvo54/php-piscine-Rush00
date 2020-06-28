@@ -12,6 +12,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET[
 <html>
 	<body class="main_container">
 		<?php include 'navigation.php'?>
+		<div class="user">
 		<h2>Your shopping cart</h2>
 		<?php
 		if (!isset($_SESSION['cart']) || count($_SESSION['cart']) === 0) {
@@ -67,5 +68,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET[
 		<form action="order_page.php" method="POST">
 			<input type="submit" name="submit" value="Checkout" />
 		</form>
+		</div>
 	</body>
 </html>
