@@ -10,6 +10,8 @@ if ($user = $_SESSION['login_user']) {
 ?>
 <html>
 	<body>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<?php include 'cart.php'?>
 	<h2>Delivery Address</h2>
 	<form action="cart_management/create_order.php" name="login.php" method="POST">

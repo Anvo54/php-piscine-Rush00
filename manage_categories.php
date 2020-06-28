@@ -5,6 +5,8 @@ if ($_SESSION["login_user"] != 'admin')
 ?>
 <html>
 	<body>
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 		<?php include 'navigation.php'?>
 		<h2>Create Category</h2>
 		<form action="db_management/add_category.php" method="POST">

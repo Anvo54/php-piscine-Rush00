@@ -10,6 +10,8 @@ $row = $result->fetch_assoc();
 ?>
 <html>
 	<body>
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 		<?php include 'navigation.php'?>
 		<h2>Modify product</h2>
 		<form action="db_management/modif_product.php?" method="POST">

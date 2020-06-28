@@ -5,6 +5,7 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 
 <link rel="stylesheet" type="text/css" href="style/menu.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <nav>
 	<ul class="navigation">
 	<a href="index.php"><h1 class="header">The webshop!</h1></a>

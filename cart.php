@@ -2,8 +2,9 @@
 session_start();
 ?>
 <link rel="stylesheet" type="text/css" href="style/cart.css">
-<html>
 <link rel="stylesheet" type="text/css" href="style/style.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+<html>
 	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<h2>Your shopping cart</h2>

@@ -2,6 +2,8 @@
 session_start();
 ?>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style/style.css">
 	<body>
 		<?php include 'navigation.php' ?>
 		<form action="db_management/add_user.php" name="create_user" method="POST">

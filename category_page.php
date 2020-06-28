@@ -22,6 +22,7 @@
 
 ?>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style/style.css">
 	<body class="main_container">
 		<title><?php echo $title?></title>

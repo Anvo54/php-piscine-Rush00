@@ -42,6 +42,7 @@
 ?>
 <html>
 <link rel="stylesheet" type="text/css" href="style/style.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<body class="main_container">
 		<title><?php echo $title?></title>
 		<?php include 'navigation.php'?>

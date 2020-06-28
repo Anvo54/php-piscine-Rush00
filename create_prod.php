@@ -4,6 +4,8 @@ if ($_SESSION["login_user"] != 'admin')
 	die('FORBIDDEN AREA');
 ?>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style/style.css">
 	<body>
 		<title>Create product</title>
 		<?php include 'navigation.php'?>

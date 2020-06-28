@@ -3,6 +3,7 @@ session_start();
 ?>
 <html>
 <link rel="stylesheet" type="text/css" href="style/style.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<form action="db_management/modif_user.php" name="change_pw" method="POST">
