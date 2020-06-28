@@ -1,18 +1,18 @@
+<?php
+session_start();
+if ($_SESSION["loggued_on_user"] != 'admin')
+	die('FORBIDDEN AREA');
+?>
 <html>
 	<body>
-		<title>Webshop admin area</title>
-		<form name="admin_login" action="access_management/login.php">
-		<table>
-			<tr>
-				<td>Username: </td>
-				<td><input type="textfield" name="login"></input></td>
-			</tr>
-			<tr>
-				<td>Password: </td>
-				<td><input type="password" name="passwd"></input></td>
-			</tr>
-		</table>
-		<input type="submit" value="OK"></input>
-		</form>
+		<?php include 'navigation.php'?>
+		<h2>Admin area</h2>
+		<ul>
+			<li><a href="create_prod.php">Create product</a></li>
+			<li><a href="remove_product.php">Remove products<s/a></li>
+			<li><a href="#">Modify products</a></li>
+			<li><a href="remove_users.php">View/remove users</a></li>
+			<li><a href="#">View orders</a></li>
+		</ul>
 	</body>
 </html>

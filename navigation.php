@@ -19,15 +19,21 @@ $accounttext = ($_SESSION["loggued_on_user"]) ? $_SESSION["loggued_on_user"] : "
 			<ul>
 				<?php
 				if ($_SESSION["loggued_on_user"]) {
+					echo '<li><a href="user_orders.php">My orders</a></li>';
+
+					echo '<li><a href="user_info.php">My details</a></li>';
+					echo '<li><a href="manage_account.php">Manage account</a></li>';
 					echo '<li><a href="access_management/logout.php">Logout</a></li>';
-					echo '<li><a href="change_password.php">Change password</a></li>';
-					echo '<li><a href="remove_user.php">Delete account</a></li>';
 				}
 				else
 					echo '<li><a href="login.php">Login/Register</a></li>';
 				?>
 			</ul>
 		<li><a href="cart.php">My cart</a></li>
+		<?php
+		if ($_SESSION["loggued_on_user"] == 'admin')
+			echo '<li><a href="admin.php">Admin</a></li>';
+		?>
 		</li>
 	</ul>
 </nav>

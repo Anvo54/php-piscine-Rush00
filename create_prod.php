@@ -1,5 +1,7 @@
 <?php
 session_start();
+if ($_SESSION["loggued_on_user"] != 'admin')
+	die('FORBIDDEN AREA');
 ?>
 <html>
 	<body>

@@ -16,11 +16,11 @@ $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 if (!password_verify($oldpw, $row['password'])) {
 	$_SESSION['error'] = "incorrect password!";
-	header('Location:../change_password.php');
+	header('Location:../manage_account.php');
 	die;
 }
 $newpw = password_hash($newpw, PASSWORD_DEFAULT);
 $sql = "UPDATE USERS SET password='$newpw' WHERE name='$user'";
 mysqli_query($conn, $sql);
 $_SESSION['msg'] = "Password changed successfully!";
-header('Location:../change_password.php');
+header('Location:../manage_account.php');

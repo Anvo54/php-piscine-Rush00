@@ -30,7 +30,7 @@ password VARCHAR(255) NOT NULL,
 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 
-$prod = "CREATE TABLE PRODUCTS (
+$products = "CREATE TABLE PRODUCTS (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(30) NOT NULL,
 	price DECIMAL(7,2) NOT NULL,
@@ -39,14 +39,39 @@ $prod = "CREATE TABLE PRODUCTS (
 	description VARCHAR(30) NOT NULL
 	)";
 
+$orders = "CREATE TABLE ORDERS (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user VARCHAR(30) NOT NULL,
+	cart TEXT(1000) NOT NULL,
+	details TEXT(1000) NOT NULL,
+	reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	)";
+
+$userdetails = "CREATE TABLE USERDETAILS (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	userid INT(4) NOT NULL,
+	firstname VARCHAR(30) NOT NULL,
+	surname VARCHAR(30) NOT NULL,
+	address VARCHAR(30) NOT NULL,
+	zipcode VARCHAR(30) NOT NULL,
+	city VARCHAR(30) NOT NULL,
+	country VARCHAR(30) NOT NULL
+	)";
+
 if (mysqli_query($conn, $users)) {
 	echo nl2br("Table USERS created successfully\n");
 } else {
 	echo "Error creating tables: " . mysqli_error($conn);
 }
 
-if (mysqli_query($conn, $prod)) {
+if (mysqli_query($conn, $products)) {
 	echo nl2br("Tables PRODUCTS created successfully\n");
+} else {
+	echo "Error creating tables: " . mysqli_error($conn);
+}
+
+if (mysqli_query($conn, $orders)) {
+	echo nl2br("Tables ORDERS created successfully\n");
 } else {
 	echo "Error creating tables: " . mysqli_error($conn);
 }

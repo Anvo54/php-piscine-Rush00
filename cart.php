@@ -7,8 +7,11 @@ session_start();
 		<?php include 'navigation.php'?>
 		<h2>Your shopping cart</h2>
 		<?php
-		if (!$_SESSION['cart'])
+		if (!$_SESSION['cart']) {
 			echo 'Cart is empty!';
+			echo '</body></html>';
+			die;
+		}
 		?>
 		<table class="cart">
 		<tr>
