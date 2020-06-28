@@ -27,7 +27,8 @@ html {
 }
 
 .product_box > img {
-	width: 220px;
+	width: auto;
+	max-height: 150px;
 	transition: transform .2s;
 }
 
