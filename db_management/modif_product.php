@@ -10,12 +10,15 @@ $product_image = $_POST["product_image"];
 $desc = mysqli_real_escape_string($conn, $_POST["product_description"]);
 $categories = implode(',', $_POST["category_name"]);
 
-$sql = "UPDATE PRODUCTS SET name='$name', categories='$categories', price=$price, stock=$stock, imgpath='$product_image', description='$desc' WHERE id=$id";
-if (mysqli_query($conn, $sql)) {
-	echo nl2br("Product modifiedsuccessfully\n");
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "UPDATE PRODUCTS SET name=(?), categories=(?), price=(?), stock=(?), imgpath=(?), description=(?) WHERE id=(?)")) {
+	mysqli_stmt_bind_param($stmt, "ssdissi", $name, $categories, $price, $stock, $product_image, $desc, $id);
+	mysqli_stmt_execute($stmt);
+	echo nl2br("Product modified successfully\n");
 }
-mysqli_close($conn);
+else {
+	echo "Error: " . $sql . "<br>";
+}
+mysqli_stmt_close($stmt);
 $_SESSION['msg'] = "Product modified successfully!";
 header("Location:../create_prod.php");
