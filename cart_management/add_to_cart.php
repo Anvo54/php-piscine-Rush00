@@ -7,5 +7,5 @@ if (!array_key_exists($_GET['id'], $_SESSION['cart'] ))
 	$_SESSION['cart'][$_GET['id']] = 1;
 else
 	$_SESSION['cart'][$_GET['id']]++;
-header('Location:../cart.php');
+header('Location:../product_page.php');
 ?>

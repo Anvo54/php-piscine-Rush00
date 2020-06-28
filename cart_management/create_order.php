@@ -20,10 +20,9 @@ foreach ($_SESSION['cart'] as $k => $v)
 $cart = implode(',',$cart);
 
 $sql = "INSERT INTO ORDERS (user, cart, firstname, lastname, address, zipcode, city, country, shipping, payment) VALUES ('$user', '$cart', '$firstname', '$lastname', '$address', '$zipcode', '$city','$country', '$shipping', '$payment')";
-if (mysqli_query($conn, $sql)) {
-	echo nl2br("New order created successfully\n");
-} else {
+if (!mysqli_query($conn, $sql))
 	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
 mysqli_close($conn);
+unset($_SESSION['cart']);
+header('Location:../user_orders.php')
 ?>

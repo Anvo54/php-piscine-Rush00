@@ -1,9 +1,11 @@
 <?php
 session_start();
-if ($user = $_SESSION['login_user'] != '') {
+if (($user = $_SESSION['login_user']) != '') {
 	require('db_management/connect.php');
+	$user = mysqli_real_escape_string($conn, $user);
 	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
-	$result = mysqli_query($conn, $sql);
+	if($result = mysqli_query($conn, $sql))
+		die("Error: " . $sql . "<br>" . mysqli_error($conn));
 	$usr = mysqli_fetch_assoc($result);
 	mysqli_close($conn);
 } else {
