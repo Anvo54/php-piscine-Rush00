@@ -1,12 +1,20 @@
 <?php
 session_start();
+if ($_SESSION["login_user"] != 'admin')
+	die('FORBIDDEN AREA');
+
 require('db_management/connect.php');
 $product = $_GET['product'];
 
-$sql = "SELECT * FROM PRODUCTS WHERE name='$product'";
-if (!$result = mysqli_query($conn, $sql))
-	die('ERROR');
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "SELECT * FROM PRODUCTS WHERE name=?")){
+	mysqli_stmt_bind_param($stmt, "s", $product);
+	mysqli_stmt_execute($stmt);
+}
+$result = mysqli_stmt_get_result($stmt);
 $usr = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
+
 ?>
 <html>
 	<body class="main_container">
@@ -43,8 +51,13 @@ $usr = mysqli_fetch_assoc($result);
 		<h3>Select categories</h3>
 			<?php
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM CATEGORIES";
-			$result = mysqli_query($conn, $sql);
+
+
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM CATEGORIES"))
+				mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			mysqli_stmt_close($stmt);
 			while ($row = mysqli_fetch_assoc($result)) {
 				echo '<tr>';
 				echo '<td>'.$row['name'].'</td>';

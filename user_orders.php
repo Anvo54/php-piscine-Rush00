@@ -43,8 +43,8 @@ session_start();
 			</tr>
 			<?php
 				$items = explode(',',$row['cart']);
+				$total = 0;
 				foreach($items as $item) {
-					$total = 0;
 					$parts = explode(':', $item);
 					$id = $parts[0];
 					$quantity = $parts[1];

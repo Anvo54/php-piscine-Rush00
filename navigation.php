@@ -16,8 +16,11 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 			<ul>
 			<?php
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM CATEGORIES";
-			$result = mysqli_query($conn, $sql);
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM CATEGORIES"))
+				mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			mysqli_stmt_close($stmt);
 			while ($cats = mysqli_fetch_assoc($result)) {
 				echo "<li><a href=category_page.php?cat=".$cats['name'].">".$cats['name']."</a></li>";
 			}

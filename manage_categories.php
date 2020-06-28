@@ -35,8 +35,12 @@ if ($_SESSION["login_user"] != 'admin')
 		<table>
 			<?php
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM CATEGORIES";
-			$result = mysqli_query($conn, $sql);
+
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM CATEGORIES"))
+				mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+			mysqli_stmt_close($stmt);
 			while ($row = mysqli_fetch_assoc($result)) {
 				echo '<tr>';
 				echo '<td>'.$row['name'].'</td>';
