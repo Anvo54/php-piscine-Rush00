@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 ?>
 
@@ -39,8 +41,15 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 		<li><a href="cart.php"><i class="material-icons md-24">shopping_cart</i>My cart</a></li>
 		<?php
 		if ($_SESSION["login_user"] == 'admin')
-			echo '<li><a href="admin.php"><i class="material-icons md-24">admin_panel_settings</i>Admin</a></li>';
+			echo '<li><a href="#"><i class="material-icons md-24">admin_panel_settings</i>Admin</a>';
 		?>
+			<ul>
+				<li><a href="create_prod.php">Manage products</a></li>
+				<li><a href="manage_categories.php">Manage categories</a></li>
+				<li><a href="remove_users.php">Manage users</a></li>
+				<li><a href="#">View all orders</a></li>
+			</ul>
+			</li>
 		</li>
 	</ul>
 </nav>

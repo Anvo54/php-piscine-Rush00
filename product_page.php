@@ -1,5 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
 	session_start();
+}
 	function view_all_products()
 	{
 		require('db_management/connect.php');
@@ -37,7 +39,7 @@
 			echo "</div>";
 		}
 	}
-	$title = ($_GET["product_name"]) ? $_GET["product_name"] : "Products";
+	$title = ((isset($_GET["product_name"]))) ? $_GET["product_name"] : "Products";
 
 ?>
 <html>
@@ -46,6 +48,6 @@
 	<body class="main_container">
 		<title><?php echo $title?></title>
 		<?php include 'navigation.php'?>
-		<?php ($_GET["product_name"]) ? view_product() : view_all_products()?>
+		<?php (isset($_GET["product_name"])) ? view_product() : view_all_products()?>
 	</body>
 </html>

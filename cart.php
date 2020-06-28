@@ -12,7 +12,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'rm' && array_key_exists($_GET[
 		<?php include 'navigation.php'?>
 		<h2>Your shopping cart</h2>
 		<?php
-		if (!$_SESSION['cart']) {
+		if (!isset($_SESSION['cart'])) {
 			echo 'Cart is empty!';
 			echo '</body></html>';
 			die;
