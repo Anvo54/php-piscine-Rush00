@@ -3,6 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "password";
 $dbname = "webshop";
+$admin = 'admin';
 $admin_pass = password_hash($password, PASSWORD_DEFAULT);
 
 $conn = mysqli_connect($servername, $username, $password);
@@ -81,12 +82,12 @@ else
 while (mysqli_next_result($conn))
 	if (!mysqli_more_results($conn)) break;
 
-$sql = "INSERT INTO USERS (user, password) VALUES ('admin', '$admin_pass')";
-if (mysqli_query($conn, $sql)) {
-	echo nl2br("Admin user created successfully\n");
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "INSERT INTO USERS (user, password) VALUES ('$admin', '$admin_pass')"))
+{
+	mysqli_stmt_execute($stmt);
 }
+mysqli_stmt_close($stmt);
 
 $sql = "INSERT INTO CATEGORIES (name, products) VALUES ('bicycles',''),('Mouses',''),('Keyboards',''),('Disinfectants','') ";
 if (mysqli_query($conn, $sql)) {
