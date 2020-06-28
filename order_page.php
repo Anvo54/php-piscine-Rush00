@@ -1,3 +1,13 @@
+<?php
+session_start();
+if ($user = $_SESSION['login_user']) {
+	require('db_management/connect.php');
+	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
+	$result = mysqli_query($conn, $sql);
+	$row = $result->fetch_assoc();
+	mysqli_close($conn);
+}
+?>
 <html>
 	<body>
 	<?php include 'cart.php'?>
@@ -6,27 +16,27 @@
 		<table>
 				<tr>
 					<td>First name: </td>
-					<td><input type="text" name="firstname" value="" required/></td>
+					<td><input type="text" name="firstname" value="<?= $row['fistname']?>" required/></td>
 				</tr>
 				<tr>
 					<td>Last name: </td>
-					<td><input type="text" name="lastname" value="" required/></td>
+					<td><input type="text" name="lastname" value="<?= $row['lastname']?>" required/></td>
 				</tr>
 				<tr>
 					<td>Address: </td>
-					<td><input type="text" name="address" value="" required/></td>
+					<td><input type="text" name="address" value="<?= $row['address']?>" required/></td>
 				</tr>
 				<tr>
 					<td>Zip code: </td>
-					<td><input type="text" name="zipcode" value="" required/></td>
+					<td><input type="text" name="zipcode" value="<?= $row['zipcode']?>" required/></td>
 				</tr>
 				<tr>
 					<td>City: </td>
-					<td><input type="text" name="zipcode" value="" required/></td>
+					<td><input type="text" name="city" value="<?= $row['city']?>" required/></td>
 				</tr>
 				<tr>
 					<td>Country: </td>
-					<td><input type="text" name="zipcode" value="" required/></td>
+					<td><input type="text" name="country" value="<?= $row['country']?>" required/></td>
 				</tr>
 		</table>
 		<h3>Choose shipping</h3>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$accounttext = ($_SESSION["loggued_on_user"]) ? $_SESSION["loggued_on_user"] : "Account";
+$accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 ?>
 
 <link rel="stylesheet" type="text/css" href="style/menu.css">
@@ -18,7 +18,7 @@ $accounttext = ($_SESSION["loggued_on_user"]) ? $_SESSION["loggued_on_user"] : "
 		<li><a href="#"><?php echo $accounttext?></a>
 			<ul>
 				<?php
-				if ($_SESSION["loggued_on_user"]) {
+				if ($_SESSION["login_user"]) {
 					echo '<li><a href="user_orders.php">My orders</a></li>';
 
 					echo '<li><a href="user_info.php">My details</a></li>';
@@ -31,7 +31,7 @@ $accounttext = ($_SESSION["loggued_on_user"]) ? $_SESSION["loggued_on_user"] : "
 			</ul>
 		<li><a href="cart.php">My cart</a></li>
 		<?php
-		if ($_SESSION["loggued_on_user"] == 'admin')
+		if ($_SESSION["login_user"] == 'admin')
 			echo '<li><a href="admin.php">Admin</a></li>';
 		?>
 		</li>

@@ -4,7 +4,7 @@ require('connect.php');
 $user = $_POST['login'];
 $passwd = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
 
-$sql = "SELECT name FROM USERS WHERE name='$user'";
+$sql = "SELECT name FROM USERS WHERE user='$user'";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0) {
 	$_SESSION['error'] = "ERROR: user already exists!";
@@ -12,7 +12,7 @@ if(mysqli_num_rows($result) > 0) {
 	die;
 }
 
-$sql = "INSERT INTO USERS (name, password) VALUES ('$user', '$passwd')";
+$sql = "INSERT INTO USERS (user, password) VALUES ('$user', '$passwd')";
 if (mysqli_query($conn, $sql)) {
 	echo nl2br("New record created successfully\n");
 } else {

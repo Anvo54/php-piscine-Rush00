@@ -6,17 +6,17 @@ if ($_POST['submit'] == 'Cancel') {
 }
 
 
-if (!$_SESSION["loggued_on_user"]) {
+if (!$_SESSION["login_user"]) {
 	$_SESSION['error'] = "Login first!";
 	header("Location:../login.php");
 	die;
 }
 require('connect.php');
-$user = $_SESSION["loggued_on_user"];
+$user = $_SESSION["login_user"];
 
-$sql = "DELETE FROM USERS WHERE name='$user'";
+$sql = "DELETE FROM USERS WHERE user='$user'";
 mysqli_query($conn, $sql);
 mysqli_close($conn);
 $_SESSION['msg'] = "User deleted successfully!";
-$_SESSION["loggued_on_user"] = "";
+$_SESSION["login_user"] = "";
 header("Location:../login.php");

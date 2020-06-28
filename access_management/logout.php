@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$_SESSION["loggued_on_user"] = "";
+	$_SESSION["login_user"] = "";
 	unset($_SESSION['cart']);
 	header('Location:../index.php')
 ?>

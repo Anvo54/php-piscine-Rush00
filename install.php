@@ -25,7 +25,7 @@ if (!$conn) {
 
 $users = "CREATE TABLE USERS (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(30) NOT NULL,
+user VARCHAR(30) NOT NULL,
 password VARCHAR(255) NOT NULL,
 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
@@ -49,34 +49,24 @@ $orders = "CREATE TABLE ORDERS (
 
 $userdetails = "CREATE TABLE USERDETAILS (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	userid INT(4) NOT NULL,
+	user VARCHAR(30) NOT NULL,
 	firstname VARCHAR(30) NOT NULL,
-	surname VARCHAR(30) NOT NULL,
+	lastname VARCHAR(30) NOT NULL,
 	address VARCHAR(30) NOT NULL,
-	zipcode VARCHAR(30) NOT NULL,
+	zipcode VARCHAR(10) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	country VARCHAR(30) NOT NULL
 	)";
 
-if (mysqli_query($conn, $users)) {
-	echo nl2br("Table USERS created successfully\n");
-} else {
-	echo "Error creating tables: " . mysqli_error($conn);
-}
+if (mysqli_multi_query($conn, $users.';'.$products.';'.$orders.';'.$userdetails))
+	echo nl2br("Tables created successfully\n");
+else
+	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 
-if (mysqli_query($conn, $products)) {
-	echo nl2br("Tables PRODUCTS created successfully\n");
-} else {
-	echo "Error creating tables: " . mysqli_error($conn);
-}
+while (mysqli_next_result($conn))
+	if (!mysqli_more_results($conn)) break;
 
-if (mysqli_query($conn, $orders)) {
-	echo nl2br("Tables ORDERS created successfully\n");
-} else {
-	echo "Error creating tables: " . mysqli_error($conn);
-}
-
-$sql = "INSERT INTO USERS (name, password) VALUES ('admin', '$admin_pass')";
+$sql = "INSERT INTO USERS (user, password) VALUES ('admin', '$admin_pass')";
 if (mysqli_query($conn, $sql)) {
 	echo nl2br("Admin user created successfully\n");
 } else {

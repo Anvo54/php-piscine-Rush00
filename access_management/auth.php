@@ -3,7 +3,7 @@ function auth($login, $passwd)
 {
 	session_start();
 	require('../db_management/connect.php');
-	$sql = "SELECT * FROM USERS WHERE name='$login'";
+	$sql = "SELECT * FROM USERS WHERE user='$login'";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) == 0) {
 		$_SESSION['error'] = "user does not exist!";

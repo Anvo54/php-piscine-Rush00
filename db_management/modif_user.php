@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-if (!$_SESSION["loggued_on_user"]) {
+if (!$_SESSION["login_user"]) {
 	$_SESSION['error'] = "Login first!";
 	header("Location:../login.php");
 	die;
 }
 require('connect.php');
-$user = $_SESSION["loggued_on_user"];
+$user = $_SESSION["login_user"];
 $oldpw = $_POST['oldpw'];
 $newpw = $_POST['newpw'];
 
-$sql = "SELECT * FROM USERS WHERE name='$user'";
+$sql = "SELECT * FROM USERS WHERE user='$user'";
 $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 if (!password_verify($oldpw, $row['password'])) {
@@ -20,7 +20,7 @@ if (!password_verify($oldpw, $row['password'])) {
 	die;
 }
 $newpw = password_hash($newpw, PASSWORD_DEFAULT);
-$sql = "UPDATE USERS SET password='$newpw' WHERE name='$user'";
+$sql = "UPDATE USERS SET password='$newpw' WHERE user='$user'";
 mysqli_query($conn, $sql);
 $_SESSION['msg'] = "Password changed successfully!";
 header('Location:../manage_account.php');

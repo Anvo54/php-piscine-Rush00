@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION["loggued_on_user"] != 'admin')
+if ($_SESSION["login_user"] != 'admin')
 	die('FORBIDDEN AREA');
 ?>
 <html>
@@ -14,11 +14,11 @@ if ($_SESSION["loggued_on_user"] != 'admin')
 			$sql = "SELECT * FROM USERS";
 			$result = mysqli_query($conn, $sql);
 			while ($row = $result->fetch_assoc()) {
-				if ($row['name'] == 'admin')
+				if ($row['user'] == 'admin')
 					continue;
 				echo '<tr>';
-				echo '<td>'.$row['name'].'</td>';
-				echo '<td><input type="checkbox" name="user[]" value="'.$row['name'].'"></td>';
+				echo '<td>'.$row['user'].'</td>';
+				echo '<td><input type="checkbox" name="user[]" value="'.$row['user'].'"></td>';
 				echo '</tr>';
 			}
 			mysqli_close($conn);
