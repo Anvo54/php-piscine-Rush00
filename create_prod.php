@@ -11,7 +11,7 @@ if ($_SESSION["login_user"] != 'admin')
 		<?php include 'navigation.php'?>
 		<h2>Add product</h2>
 		<h3>Product details</h3>
-		<form action="db_management/add_product.php" name="create_product" method="POST">
+		<form action="db_management/add_product.php" name="create_product" method="POST" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Name:</td>
@@ -27,7 +27,7 @@ if ($_SESSION["login_user"] != 'admin')
 				</tr>
 				<tr>
 					<td>Image path:</td>
-					<td><input type="textfield" name="product_image" value=""/ required></td>
+					<td><input type="file" name="product_image" value=""/ required id="product_image"></td>
 				</tr>
 				<tr>
 					<td>Description:</td>
