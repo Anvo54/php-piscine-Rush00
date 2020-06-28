@@ -4,7 +4,7 @@ if ($user = $_SESSION['login_user']) {
 	require('db_management/connect.php');
 	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
 	$result = mysqli_query($conn, $sql);
-	$row = $result->fetch_assoc();
+	$usr = $result->fetch_assoc();
 	mysqli_close($conn);
 }
 ?>
@@ -18,27 +18,27 @@ if ($user = $_SESSION['login_user']) {
 		<table>
 				<tr>
 					<td>First name: </td>
-					<td><input type="text" name="firstname" value="<?= $row['firstname']?>" required/></td>
+					<td><input type="text" name="firstname" value="<?= $usr['firstname'] ?? '' ?>" required/></td>
 				</tr>
 				<tr>
 					<td>Last name: </td>
-					<td><input type="text" name="lastname" value="<?= $row['lastname']?>" required/></td>
+					<td><input type="text" name="lastname" value="<?= $usr['lastname'] ?? '' ?>" required/></td>
 				</tr>
 				<tr>
 					<td>Address: </td>
-					<td><input type="text" name="address" value="<?= $row['address']?>" required/></td>
+					<td><input type="text" name="address" value="<?= $usr['address'] ?? '' ?>" required/></td>
 				</tr>
 				<tr>
 					<td>Zip code: </td>
-					<td><input type="text" name="zipcode" value="<?= $row['zipcode']?>" required/></td>
+					<td><input type="text" name="zipcode" value="<?= $usr['zipcode'] ?? '' ?>" required/></td>
 				</tr>
 				<tr>
 					<td>City: </td>
-					<td><input type="text" name="city" value="<?= $row['city']?>" required/></td>
+					<td><input type="text" name="city" value="<?= $usr['city'] ?? '' ?>" required/></td>
 				</tr>
 				<tr>
 					<td>Country: </td>
-					<td><input type="text" name="country" value="<?= $row['country']?>" required/></td>
+					<td><input type="text" name="country" value="<?= $usr['country'] ?? '' ?>" required/></td>
 				</tr>
 		</table>
 		<h3>Choose shipping</h3>

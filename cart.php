@@ -24,7 +24,6 @@ session_start();
 		</tr>
 		<?php
 		$total = 0;
-		echo print_r($_SESSION);
 		foreach($_SESSION['cart'] as $id => $quantity) {
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
@@ -38,7 +37,7 @@ session_start();
 			$subtotal = $quantity * $row['price'];
 			$total += $subtotal;
 			echo '<tr>';
-			echo '<td>'.$row['product'].'</td>';
+			echo '<td>'.$row['name'].'</td>';
 			echo '<td>'.$quantity.'</td>';
 			echo '<td>$'.$row['price'] .'</td>';
 			echo '<td>$'.$subtotal.'</td>';
@@ -60,5 +59,9 @@ session_start();
 			<td class="total"></td>
 			<td style='width: 20%'><?php echo '<b>$'.$total.'</>'; ?></td>
 		</tr>
+		</table>
+		<form action="order_page.php" method="POST">
+			<input type="submit" name="submit" value="Checkout" />
+		</form>
 	</body>
 </html>

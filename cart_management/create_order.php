@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('../db_management/connect.php');
-
 $user = $_SESSION['login_user'];
 
 

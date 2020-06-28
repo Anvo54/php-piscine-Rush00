@@ -17,27 +17,27 @@ mysqli_close($conn);
 		<table>
 				<tr>
 					<td>First name: </td>
-					<td><input type="text" name="firstname" value="<?= $usr['firstname']?>"/></td>
+					<td><input type="text" name="firstname" value="<?= $usr['firstname'] ?? '' ?>"/></td>
 				</tr>
 				<tr>
 					<td>Last name: </td>
-					<td><input type="text" name="lastname" value="<?= $usr['lastname']?>"/></td>
+					<td><input type="text" name="lastname" value="<?= $usr['lastname'] ?? '' ?>"/></td>
 				</tr>
 				<tr>
 					<td>Address: </td>
-					<td><input type="text" name="address" value="<?= $usr['address']?>" /></td>
+					<td><input type="text" name="address" value="<?= $usr['address'] ?? '' ?>" /></td>
 				</tr>
 				<tr>
 					<td>Zip code: </td>
-					<td><input type="text" name="zipcode" value="<?= $usr['zipcode']?>" /></td>
+					<td><input type="text" name="zipcode" value="<?= $usr['zipcode'] ?? '' ?>" /></td>
 				</tr>
 				<tr>
 					<td>City: </td>
-					<td><input type="text" name="city" value="<?= $usr['city']?>" /></td>
+					<td><input type="text" name="city" value="<?= $usr['city'] ?? '' ?>" /></td>
 				</tr>
 				<tr>
 					<td>Country: </td>
-					<td><input type="text" name="country" value="<?= $usr['country']?>"/></td>
+					<td><input type="text" name="country" value="<?= $usr['country'] ?? '' ?>"/></td>
 				</tr>
 		</table>
 		<br>
