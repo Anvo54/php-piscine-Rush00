@@ -2,7 +2,8 @@
 session_start();
 ?>
 <html>
-	<body>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<form action="db_management/modif_user.php" name="change_pw" method="POST">
 			<h2>Change password</h2>

@@ -2,7 +2,8 @@
 session_start();
 ?>
 <html>
-	<body>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<form action="access_management/login.php" name="login.php" method="POST">
 			<h2>Login</h2>

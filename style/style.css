@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: smooth;
+}
+
+.product_content{
+	text-align: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	grid-gap: 1rem;
+}
+
+.single_product{
+	align-content: center;
+	text-align: center;
+}
+
+.main_container{
+	padding-left: 15%;
+	padding-right: 15%;
+}
+
+.button_green {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+  }

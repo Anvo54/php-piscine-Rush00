@@ -4,7 +4,8 @@ if ($_SESSION["login_user"] != 'admin')
 	die('FORBIDDEN AREA');
 ?>
 <html>
-	<body>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<h2>Admin area</h2>
 		<ul>

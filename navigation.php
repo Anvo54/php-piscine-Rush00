@@ -4,11 +4,12 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 ?>
 
 <link rel="stylesheet" type="text/css" href="style/menu.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav>
 	<ul class="navigation">
 	<a href="index.php"><h1 class="header">The webshop!</h1></a>
-		<li><a href="product_page.php">Products</a></li>
-		<li><a href="#">Categories</a>
+	<li><a href="product_page.php"><i class="material-icons md-24">shop</i>Products</a></li>
+		<li><a href="#"><i class="material-icons md-24">category</i>Categories</a>
 			<ul>
 			<?php
 			require('db_management/connect.php');
@@ -20,7 +21,7 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 			?>
 			</ul>
 		</li>
-		<li><a href="#"><?php echo $accounttext?></a>
+		<li><a href="#"><i class="material-icons md-24">account_circle</i><?php echo $accounttext?></a>
 			<ul>
 				<?php
 				if ($_SESSION["login_user"]) {
@@ -34,10 +35,10 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 					echo '<li><a href="login.php">Login/Register</a></li>';
 				?>
 			</ul>
-		<li><a href="cart.php">My cart</a></li>
+		<li><a href="cart.php"><i class="material-icons md-24">shopping_cart</i>My cart</a></li>
 		<?php
 		if ($_SESSION["login_user"] == 'admin')
-			echo '<li><a href="admin.php">Admin</a></li>';
+			echo '<li><a href="admin.php"><i class="material-icons md-24">admin_panel_settings</i>Admin</a></li>';
 		?>
 		</li>
 	</ul>

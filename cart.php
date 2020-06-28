@@ -3,7 +3,8 @@ session_start();
 ?>
 <link rel="stylesheet" type="text/css" href="style/cart.css">
 <html>
-	<body>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+	<body class="main_container">
 		<?php include 'navigation.php'?>
 		<h2>Your shopping cart</h2>
 		<?php

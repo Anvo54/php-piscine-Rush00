@@ -8,7 +8,8 @@ $usr = $result->fetch_assoc();
 mysqli_close($conn);
 ?>
 <html>
-	<body>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+	<body class="main_container">
 	<?php include 'navigation.php' ?>
 	<h2>User details</h2>
 	<form action="user_management/save_user_details.php" method="POST">
