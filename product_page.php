@@ -2,47 +2,38 @@
 	session_start();
 	function view_all_products()
 	{
-		$unserfile = unserialize(file_get_contents("data/products"));
-		$products = $unserfile;
+		require('db_management/connect.php');
+		$sql = "SELECT * FROM PRODUCTS";
+		$result = mysqli_query($conn, $sql);
 		echo "<h1>All products</h1>";
-		foreach ($products as $product) {
-			echo "<a href="."?product_name=".$product["product_name"]."><h1>".$product["product_name"]."</h1></a>";
-			echo "<img src=".$product["product_image"].">";
-			echo "<p>".$product["product_description"]."</p>";
-			echo "<p>".$product["product_price"]." $</p>";
+		while ($row = $result->fetch_assoc()) {
+			echo "<a href="."?product_name=".$row["name"]."><h1>".$row["name"]."</h1></a>";
+			echo "<img src=".$row["imgpath"].">";
+			echo "<p>".$row['description']."</p>";
+			echo "<p>$".$row["price"]." / ".$row['stock']." in stock</p>";
 			echo "<button>Add to cart</button>";
 			echo "<hr>";
 		}
 	}
 	function view_product()
 	{
-		$product_found = FALSE;
-		$unserfile = unserialize(file_get_contents("data/products"));
-		$products = $unserfile;
-		foreach ($products as $product) {
-			if ($product["product_name"] == $_GET["product_name"])
-			{
-				$product_found = TRUE;
-				echo "<h1>".$product["product_name"]."</h1>";
-				echo "<img src=".$product["product_image"].">";
-				echo "<p>".$product["product_description"]."</p>";
-				echo "<p>".$product["product_price"]." $</p>";
-				echo "<button>Add to cart</button>";
-			}
-		}
-		if (!$product_found)
-		{
+		require('db_management/connect.php');
+		$product = $_GET["product_name"];
+		$sql = "SELECT * FROM PRODUCTS WHERE name='$product'";
+		$result = mysqli_query($conn, $sql);
+		if(mysqli_num_rows($result) === 0)
 			echo "Product not found!";
+		else {
+			$row = $result->fetch_assoc();
+			echo "<h1>".$row["name"]."</h1>";
+			echo "<img src=".$row["imgpath"].">";
+			echo "<p>".$row["description"]."</p>";
+			echo "<p>$".$row["price"]." / ".$row['stock']." in stock</p>";
+			echo "<button>Add to cart</button>";
 		}
 	}
 	$title = ($_GET["product_name"]) ? $_GET["product_name"] : "Products";
 
-	if (!file_exists("data/products"))
-	{
-		include 'navigation.php';
-		echo "Product catalog is empty please <a href=".'create_prod.php'.">add some products</a>";
-		exit;
-	}
 ?>
 <html>
 	<body>

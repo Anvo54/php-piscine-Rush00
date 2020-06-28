@@ -4,20 +4,19 @@ session_start();
 <html>
 	<body>
 		<?php include 'navigation.php'?>
-		<form action="access_management/login.php" name="login.php" method="POST">
-			<h2>Login</h2>
+		<form action="db_management/modif_user.php" name="change_pw" method="POST">
+			<h2>Change password</h2>
 			<table>
 				<tr>
-					<td>Username: </td>
-					<td><input type="textfield" name="login" value=""/></td>
+					<td>Old password: </td>
+					<td><input type="password" name="oldpw" value=""/></td>
 				</tr>
 				<tr>
-					<td>Password: </td>
-					<td><input type="password" name="passwd" value=""/></td>
+					<td>New password: </td>
+					<td><input type="password" name="newpw" value=""/></td>
 				</tr>
 			</table>
 			<input type="submit" name="submit" value="OK" />
-			<a href="create_user.php">register</a>
 			<?php
 			if (isset($_SESSION['msg'])) {
 				echo $_SESSION['msg'];

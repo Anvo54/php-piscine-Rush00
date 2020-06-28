@@ -5,9 +5,11 @@
 	{
 		$_SESSION["loggued_on_user"] = $_POST["login"];
 		echo("OK\n");
+		header('Location: ../index.php');
 	} else
 	{
 		$_SESSION["loggued_on_user"] = "";
 		echo "ERROR\n";
+		header('Location: ../login.php');
 	}
 ?>
