@@ -52,12 +52,16 @@ $product_image = mysqli_real_escape_string($conn, "data/img/".basename($_FILES["
 $desc = mysqli_real_escape_string($conn, $_POST["product_description"]);
 $categories = implode(',', $_POST["category_name"]);
 
-$sql = "INSERT INTO PRODUCTS (name, categories, price, stock, imgpath, description) VALUES ('$name', '$categories', $price, $stock, '$product_image', '$desc')";
-if (mysqli_query($conn, $sql)) {
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "INSERT INTO PRODUCTS (name, categories, price, stock, imgpath, description) VALUES ((?),(?),(?),(?),(?),(?))")) {
+	mysqli_stmt_bind_param($stmt, "ssdiss", $name, $categories, $price, $stock, $product_image, $desc);
+	mysqli_stmt_execute($stmt);
 	echo nl2br("New product created successfully\n");
 } else {
 	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
+mysqli_stmt_close($stmt);
+
 mysqli_close($conn);
 $_SESSION['msg'] = "Product created successfully!";
 header("Location:../create_prod.php");
