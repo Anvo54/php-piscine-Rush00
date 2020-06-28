@@ -6,6 +6,7 @@ session_start();
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 	<body class="main_container">
 		<?php include 'navigation.php'?>
+		<div class="user">
 		<form action="access_management/login.php" name="login.php" method="POST">
 			<h2>Login</h2>
 			<table>
@@ -31,5 +32,6 @@ session_start();
 			}
 			?>
 		</form>
+		</div>
 	</body>
 </html>
