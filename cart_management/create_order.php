@@ -21,9 +21,10 @@ $cart = implode(',',$cart);
 
 $stmt = mysqli_stmt_init($conn);
 if (mysqli_stmt_prepare($stmt, "INSERT INTO ORDERS (user, cart, firstname, lastname, address, zipcode, city, country, shipping, payment) VALUES ('$user', '$cart', '$firstname', '$lastname', '$address', '$zipcode', '$city','$country', '$shipping', '$payment')")) {
-	mysqli_stmt_bind_param($stmt, "ssssssssss", $user, $user, $cart, $firstname, $lastname, $address, $zipcode, $city ,$country, $shipping, $payment);
+	mysqli_stmt_bind_param($stmt, "ssssssssss", $user, $cart, $firstname, $lastname, $address, $zipcode, $city ,$country, $shipping, $payment);
 	mysqli_stmt_execute($stmt);
 }
+mysqli_stmt_close($stmt);
 unset($_SESSION['cart']);
 header('Location:../user_orders.php')
 ?>
