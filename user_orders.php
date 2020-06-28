@@ -12,11 +12,21 @@ session_start();
 	<?php
 		require('db_management/connect.php');
 		$user = $_SESSION["login_user"];
-		if ($user == 'admin' && isset($_GET['admin']))
-			$sql = "SELECT * FROM ORDERS";
-		else
-			$sql = "SELECT * FROM ORDERS WHERE user='$user'";
-		$result = mysqli_query($conn, $sql);
+
+		if ($user == 'admin' && isset($_GET['admin'])) {
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM ORDERS")) {
+				mysqli_stmt_execute($stmt);
+			}
+		} else {
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM ORDERS WHERE USER =?")) {
+				mysqli_stmt_bind_param($stmt, "s", $user);
+				mysqli_stmt_execute($stmt);
+			}
+		}
+		$result = mysqli_stmt_get_result($stmt);
+		mysqli_stmt_close($stmt);
 		if(mysqli_num_rows($result) === 0)
 			echo "No orders found!";
 		else {

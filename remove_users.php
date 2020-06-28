@@ -14,8 +14,10 @@ if ($_SESSION["login_user"] != 'admin')
 		<table>
 			<?php
 			require('db_management/connect.php');
-			$sql = "SELECT * FROM USERS";
-			$result = mysqli_query($conn, $sql);
+			$stmt = mysqli_stmt_init($conn);
+			if (mysqli_stmt_prepare($stmt, "SELECT * FROM USERS"))
+				mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
 			while ($row = mysqli_fetch_assoc($result)) {
 				if ($row['user'] == 'admin')
 					continue;
@@ -24,7 +26,7 @@ if ($_SESSION["login_user"] != 'admin')
 				echo '<td><input type="checkbox" name="user[]" value="'.$row['user'].'"></td>';
 				echo '</tr>';
 			}
-			mysqli_close($conn);
+			mysqli_stmt_close($stmt);
 			?>
 		</table>
 		<?php

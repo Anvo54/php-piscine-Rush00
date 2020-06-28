@@ -2,10 +2,14 @@
 session_start();
 require('db_management/connect.php');
 $user = $_SESSION['login_user'];
-$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "SELECT * FROM USERDETAILS WHERE user=?")) {
+	mysqli_stmt_bind_param($stmt, "s", $user);
+	mysqli_stmt_execute($stmt);
+}
+$result = mysqli_stmt_get_result($stmt);
 $usr = mysqli_fetch_assoc($result);
-mysqli_close($conn);
+mysqli_stmt_close($stmt);
 ?>
 <html>
 <link rel="stylesheet" type="text/css" href="style/style.css">
