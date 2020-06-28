@@ -1,11 +1,15 @@
 <?php
 session_start();
-if ($user = $_SESSION['login_user']) {
+if ($user = $_SESSION['login_user'] != '') {
 	require('db_management/connect.php');
 	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
 	$result = mysqli_query($conn, $sql);
 	$usr = $result->fetch_assoc();
 	mysqli_close($conn);
+} else {
+	$_SESSION['error'] = 'Log in before making an order';
+	header('Location:login.php');
+	die();
 }
 ?>
 <html>
@@ -42,11 +46,11 @@ if ($user = $_SESSION['login_user']) {
 				</tr>
 		</table>
 		<h3>Choose shipping</h3>
-		<input type="radio" id="Express mail" name="delivery" value="express">
+		<input type="radio" id="Express mail" name="shipping" value="express">
 		<label for="express">Express (4-7 working days) - $24.99</label><br>
-		<input type="radio" id="priority" name="delivery" value="priority">
+		<input type="radio" id="priority" name="shipping" value="priority">
 		<label for="priority">Priority (8-14 days) - $9.99</label><br>
-		<input type="radio" id="standard" name="delivery" value="standard">
+		<input type="radio" id="standard" name="shipping" value="standard">
 		<label for="standard">Standard (15-21 days) - FREE</label><br><br>
 		<h3>Choose payment method</h3>
 		<input type="radio" id="creditcard" name="payment" value="creditcard">

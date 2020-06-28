@@ -27,11 +27,8 @@ session_start();
 		foreach($_SESSION['cart'] as $id => $quantity) {
 			require('db_management/connect.php');
 			$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
-			if ($result = mysqli_query($conn, $sql)) {
-				echo nl2br("New order created successfully\n");
-			} else {
-				echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-			}
+			if (!$result = mysqli_query($conn, $sql))
+				die("Error: " . $sql . "<br>" . mysqli_error($conn));
 			$row = $result->fetch_assoc();
 			mysqli_close($conn);
 			$subtotal = $quantity * $row['price'];
