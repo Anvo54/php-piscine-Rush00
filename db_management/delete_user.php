@@ -5,7 +5,6 @@ if ($_POST['submit'] == 'Cancel') {
 	die;
 }
 
-
 if (!$_SESSION["login_user"]) {
 	$_SESSION['error'] = "Login first!";
 	header("Location:../login.php");
@@ -13,10 +12,11 @@ if (!$_SESSION["login_user"]) {
 }
 require('connect.php');
 $user = $_SESSION["login_user"];
-
-$sql = "DELETE FROM USERS WHERE user='$user'";
-mysqli_query($conn, $sql);
-mysqli_close($conn);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "DELETE FROM USERS WHERE user=?")) {
+	mysqli_stmt_bind_param($stmt, "s", $user);
+	mysqli_stmt_execute($stmt);
+}
 $_SESSION['msg'] = "User deleted successfully!";
 $_SESSION["login_user"] = "";
 header("Location:../login.php");

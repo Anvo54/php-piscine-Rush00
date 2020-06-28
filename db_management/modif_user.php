@@ -11,8 +11,12 @@ $user = $_SESSION["login_user"];
 $oldpw = $_POST['oldpw'];
 $newpw = $_POST['newpw'];
 
-$sql = "SELECT * FROM USERS WHERE user='$user'";
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "SELECT * FROM USERS WHERE user=?")) {
+	mysqli_stmt_bind_param($stmt, "s", $user);
+	mysqli_stmt_execute($stmt);
+}
+$result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
 if (!password_verify($oldpw, $row['password'])) {
 	$_SESSION['error'] = "incorrect password!";
@@ -20,7 +24,9 @@ if (!password_verify($oldpw, $row['password'])) {
 	die;
 }
 $newpw = password_hash($newpw, PASSWORD_DEFAULT);
-$sql = "UPDATE USERS SET password='$newpw' WHERE user='$user'";
-mysqli_query($conn, $sql);
+if (mysqli_stmt_prepare($stmt, "UPDATE USERS SET password=? WHERE user=?")) {
+	mysqli_stmt_bind_param($stmt, "ss", $newpw, $user);
+	mysqli_stmt_execute($stmt);
+}
 $_SESSION['msg'] = "Password changed successfully!";
 header('Location:../manage_account.php');

@@ -1,8 +1,10 @@
 <?php
 require('connect.php');
 foreach ($_POST['user'] as $user) {
-	$sql = "DELETE FROM USERS WHERE user='$user'";
-	mysqli_query($conn, $sql);
+	$stmt = mysqli_stmt_init($conn);
+	if (mysqli_stmt_prepare($stmt, "DELETE FROM USERS WHERE user=?")) {
+		mysqli_stmt_bind_param($stmt, "s", $user);
+		mysqli_stmt_execute($stmt);
+	}
 }
-mysqli_close($conn);
 header("Location:../remove_users.php");
