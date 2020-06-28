@@ -10,11 +10,17 @@ $zipcode = $_POST['zipcode'];
 $city = $_POST['city'];
 $country = $_POST['country'];
 
-$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "SELECT * FROM USERDETAILS WHERE user=?")) {
+	mysqli_stmt_bind_param($stmt, "s", $user);
+	mysqli_stmt_execute($stmt);
+}
+$result = mysqli_stmt_get_result($stmt);
 if(mysqli_num_rows($result) > 0) {
-	$sql = "UPDATE USERDETAILS SET firstname='$firstname', lastname='$lastname', address='$address', zipcode='$zipcode', city='$city', country='$country' WHERE user='$user'";
-	mysqli_query($conn, $sql);
+	if (mysqli_stmt_prepare($stmt, "UPDATE USERDETAILS SET firstname=?, lastname=?, address=?, zipcode=?, city=?, country=? WHERE user=?")) {
+		mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $address, $zipcode, $city, $country, $user);
+		mysqli_stmt_execute($stmt);
+	}
 	header('Location:../user_info.php');
 	exit();
 }
