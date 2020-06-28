@@ -5,9 +5,13 @@ if (session_status() == PHP_SESSION_NONE) {
 	function view_all_products()
 	{
 		require('db_management/connect.php');
-		$sql = "SELECT * FROM PRODUCTS";
-		if (!$result = mysqli_query($conn, $sql))
-			die("Error: " . $sql . "<br>" . mysqli_error($conn));
+
+
+		$stmt = mysqli_stmt_init($conn);
+		if (mysqli_stmt_prepare($stmt, "SELECT * FROM PRODUCTS"))
+			mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		mysqli_stmt_close($stmt);
 		echo "<h1>All products</h1>";
 		echo '<div class="product_content">';
 		while ($row = mysqli_fetch_assoc($result)) {
@@ -25,9 +29,13 @@ if (session_status() == PHP_SESSION_NONE) {
 	{
 		require('db_management/connect.php');
 		$id = mysqli_real_escape_string($conn, $_GET["id"]);
-		$sql = "SELECT * FROM PRODUCTS WHERE id=$id";
-		if (!$result = mysqli_query($conn, $sql))
-			die("Error: " . $sql . "<br>" . mysqli_error($conn));
+		$stmt = mysqli_stmt_init($conn);
+		if (mysqli_stmt_prepare($stmt, "SELECT * FROM PRODUCTS WHERE id=?")) {
+			mysqli_stmt_bind_param($stmt, "i", $id);
+			mysqli_stmt_execute($stmt);
+		}
+		$result = mysqli_stmt_get_result($stmt);
+		mysqli_stmt_close($stmt);
 		if(mysqli_num_rows($result) === 0)
 			echo "Product not found!";
 		else {

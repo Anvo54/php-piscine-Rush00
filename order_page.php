@@ -3,11 +3,14 @@ session_start();
 if (($_SESSION['login_user']) != '') {
 	require('db_management/connect.php');
 	$user = mysqli_real_escape_string($conn, $_SESSION['login_user']);
-	$sql = "SELECT * FROM USERDETAILS WHERE user='$user'";
-	if(!$result = mysqli_query($conn, $sql))
-		die("Error: " . $sql . "<br>" . mysqli_error($conn));
+	$stmt = mysqli_stmt_init($conn);
+		if (mysqli_stmt_prepare($stmt, "SELECT * FROM USERDETAILS WHERE user=?")) {
+			mysqli_stmt_bind_param($stmt, "s", $user);
+			mysqli_stmt_execute($stmt);
+		}
+	$result = mysqli_stmt_get_result($stmt);
 	$usr = mysqli_fetch_assoc($result);
-	mysqli_close($conn);
+	mysqli_stmt_close($stmt);
 } else {
 	$_SESSION['error'] = 'Log in before making an order';
 	header('Location:login.php');
