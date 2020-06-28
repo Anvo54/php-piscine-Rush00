@@ -3,6 +3,7 @@ ul {
 	padding: 15px;
 	margin: 5px;
 	background: rgb(255, 129, 129);
+	border-radius: 2vmin;
 }
 ul li {
 	display: block;
@@ -36,7 +37,7 @@ li:hover a {background: rgb(255, 129, 129);}
 
 li:hover li a:hover {background: plum;}
 
-.main-navigation li ul li {border-top: 0;}
+.main-navigation li ul li {border-top: 0; border-radius: 2vmin;}
 
 ul ul ul {
 	left: 90%;

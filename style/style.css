@@ -15,6 +15,10 @@ html {
 .single_product{
 	align-content: center;
 	text-align: center;
+	background-color: white;
+	border-radius: 2vmin;
+	border-style: outset;
+	border-color: black;
 }
 
 .single_product > img{
@@ -24,6 +28,12 @@ html {
 
 .single_product > img:hover{
 	transform: scale(3);
+}
+.product_box{
+	background-color: white;
+	border-radius: 2vmin;
+	border-style: outset;
+	border-color: black;
 }
 
 .product_box > img {
@@ -39,20 +49,26 @@ html {
 .main_container{
 	padding-left: 15%;
 	padding-right: 15%;
+	background-color: white;
 }
 body {
 	font-family: 'Quicksand', sans-serif;
 	font-weight: 300;
+	background-image: url('../data/img/background.jpg');
 }
 
 	h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
 
-h1{
-	text-align: center;
+a {
+	color: rgb(255, 129, 129);
 }
 
+h1{
+	text-align: center;
+	text-shadow: 0px 0px 2px white;
+}
 button {
 	background-color: #4CAF50; /* Green */
 	border: none;
