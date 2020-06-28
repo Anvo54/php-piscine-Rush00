@@ -7,7 +7,8 @@ if ($_SESSION["login_user"] != 'admin')
 	<body>
 		<title>Create product</title>
 		<?php include 'navigation.php'?>
-		<h2>Create product</h2>
+		<h2>Add product</h2>
+		<h3>Product details</h3>
 		<form action="db_management/add_product.php" name="create_product" method="POST">
 			<table>
 				<tr>
@@ -31,7 +32,23 @@ if ($_SESSION["login_user"] != 'admin')
 					<td><input type="textarea" rows="5" name="product_description" value=""/ required></td>
 				</tr>
 			</table>
-			<input type="submit" name="submit" value="OK" />
+		<table>
+		<h3>Select categories</h3>
+			<?php
+			require('db_management/connect.php');
+			$sql = "SELECT * FROM CATEGORIES";
+			$result = mysqli_query($conn, $sql);
+			while ($row = $result->fetch_assoc()) {
+				echo '<tr>';
+				echo '<td>'.$row['name'].'</td>';
+				echo '<td><input type="checkbox" name="category_name[]" value="'.$row['name'].'"></td>';
+				echo '</tr>';
+			}
+			mysqli_close($conn);
+			?>
+		</table>
+		<br>
+		<input type="submit" name="submit" value="Create" />
 			<?php
 			if (isset($_SESSION['msg'])) {
 				echo $_SESSION['msg'];
@@ -39,5 +56,27 @@ if ($_SESSION["login_user"] != 'admin')
 			}
 			?>
 		</form>
+		<form action="db_management/delete_product.php" method="post">
+	<h2>Product list</h2>
+		<table>
+			<?php
+			require('db_management/connect.php');
+			$sql = "SELECT * FROM PRODUCTS";
+			$result = mysqli_query($conn, $sql);
+			while ($row = $result->fetch_assoc()) {
+				echo '<tr>';
+				echo '<td><a href="modify_product.php?product='.$row['name'].'">'.$row['name'].'</a></td>';
+				echo '<td><input type="checkbox" name="product[]" value="'.$row['name'].'"></td>';
+				echo '</tr>';
+			}
+			mysqli_close($conn);
+			?>
+		</table>
+		<br>
+		<?php
+			if (mysqli_num_rows ($result))
+				echo '<input type="submit" name="submit" value="Delete" />';
+			?>
+</form>
 	</body>
 </html>

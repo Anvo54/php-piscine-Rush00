@@ -8,11 +8,10 @@ if ($_SESSION["login_user"] != 'admin')
 		<?php include 'navigation.php'?>
 		<h2>Admin area</h2>
 		<ul>
-			<li><a href="create_prod.php">Create product</a></li>
-			<li><a href="remove_product.php">Remove products<s/a></li>
-			<li><a href="#">Modify products</a></li>
-			<li><a href="remove_users.php">View/remove users</a></li>
-			<li><a href="#">View orders</a></li>
+			<li><a href="create_prod.php">Manage products</a></li>
+			<li><a href="manage_categories.php">Manage categories</a></li>
+			<li><a href="remove_users.php">Manage users</a></li>
+			<li><a href="#">Manage orders</a></li>
 		</ul>
 	</body>
 </html>

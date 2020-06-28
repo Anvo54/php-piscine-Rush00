@@ -33,6 +33,7 @@ reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 $products = "CREATE TABLE PRODUCTS (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(30) NOT NULL,
+	categories VARCHAR(500),
 	price DECIMAL(7,2) NOT NULL,
 	stock INT(4) NOT NULL,
 	imgpath VARCHAR(30) NOT NULL,
@@ -58,7 +59,14 @@ $userdetails = "CREATE TABLE USERDETAILS (
 	country VARCHAR(30) NOT NULL
 	)";
 
-if (mysqli_multi_query($conn, $users.';'.$products.';'.$orders.';'.$userdetails))
+$categories = "CREATE TABLE CATEGORIES (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(30) NOT NULL,
+	products VARCHAR(1000)
+	)";
+
+
+if (mysqli_multi_query($conn, $users.';'.$products.';'.$orders.';'.$userdetails.';'.$categories))
 	echo nl2br("Tables created successfully\n");
 else
 	echo "Error: " . $sql . "<br>" . mysqli_error($conn);

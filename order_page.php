@@ -16,7 +16,7 @@ if ($user = $_SESSION['login_user']) {
 		<table>
 				<tr>
 					<td>First name: </td>
-					<td><input type="text" name="firstname" value="<?= $row['fistname']?>" required/></td>
+					<td><input type="text" name="firstname" value="<?= $row['firstname']?>" required/></td>
 				</tr>
 				<tr>
 					<td>Last name: </td>

@@ -10,9 +10,14 @@ $accounttext = ($_SESSION["login_user"]) ? $_SESSION["login_user"] : "Account";
 		<li><a href="product_page.php">Products</a></li>
 		<li><a href="#">Categories</a>
 			<ul>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">Categories</a></li>
+			<?php
+			require('db_management/connect.php');
+			$sql = "SELECT * FROM CATEGORIES";
+			$result = mysqli_query($conn, $sql);
+			while ($cats = $result->fetch_assoc()) {
+				echo "<li><a href=category_page.php?cat=".$cats['name'].">".$cats['name']."</a></li>";
+			}
+			?>
 			</ul>
 		</li>
 		<li><a href="#"><?php echo $accounttext?></a>
