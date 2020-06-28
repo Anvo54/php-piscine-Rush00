@@ -19,10 +19,11 @@ foreach ($_SESSION['cart'] as $k => $v)
 	$cart[] = $k.':'.$v;
 $cart = implode(',',$cart);
 
-$sql = "INSERT INTO ORDERS (user, cart, firstname, lastname, address, zipcode, city, country, shipping, payment) VALUES ('$user', '$cart', '$firstname', '$lastname', '$address', '$zipcode', '$city','$country', '$shipping', '$payment')";
-if (!mysqli_query($conn, $sql))
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-mysqli_close($conn);
+$stmt = mysqli_stmt_init($conn);
+if (mysqli_stmt_prepare($stmt, "INSERT INTO ORDERS (user, cart, firstname, lastname, address, zipcode, city, country, shipping, payment) VALUES ('$user', '$cart', '$firstname', '$lastname', '$address', '$zipcode', '$city','$country', '$shipping', '$payment')")) {
+	mysqli_stmt_bind_param($stmt, "ssssssssss", $user, $user, $cart, $firstname, $lastname, $address, $zipcode, $city ,$country, $shipping, $payment);
+	mysqli_stmt_execute($stmt);
+}
 unset($_SESSION['cart']);
 header('Location:../user_orders.php')
 ?>
